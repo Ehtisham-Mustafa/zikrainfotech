@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
+use Spatie\Multitenancy\Contracts\IsTenant;
 use Spatie\Multitenancy\Models\Tenant as BaseTenant;
 
-class Tenant extends BaseTenant
+class Tenant extends BaseTenant implements IsTenant
 {
     protected $fillable = ['name', 'domain', 'database'];
 
-    // optional helper to switch db name format
     public static function booted()
     {
         static::creating(function ($tenant) {
-            $tenant->database = "tenant_{$tenant->id}";
+            $tenant->database = 'tenant_' . strtolower(str_replace(' ', '_', $tenant->name));
         });
     }
 }

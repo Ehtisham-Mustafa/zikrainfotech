@@ -43,8 +43,8 @@ return [
             'host' => env('DB_TENANT_HOST', '127.0.0.1'),
             'port' => env('DB_TENANT_PORT', '3306'),
             'database' => null,     // will be set at runtime
-            'username' => null,     // will be set at runtime
-            'password' => null,     // will be set at runtime
+            'username' => env('DB_TENANT_USERNAME','root'),  
+            'password' => env('DB_TENANT_PASSWORD','R@na6293'),     
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

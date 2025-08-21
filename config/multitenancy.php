@@ -24,11 +24,12 @@ return [
      * - PrefixCacheTask: prefixes cache keys with tenant id
      * You can add your own tasks too.
      */
-'switch_tenant_tasks' => [
-    App\Actions\CreateTenantDatabase::class,
-    Spatie\Multitenancy\Tasks\SwitchTenantDatabaseTask::class,
-    Spatie\Multitenancy\Tasks\PrefixCacheTask::class,
-],
+    'switch_tenant_tasks' => [
+        App\Actions\CreateTenantDatabase::class,       // creates the DB if missing
+        Spatie\Multitenancy\Tasks\SwitchTenantDatabaseTask::class,  // switches DB connection
+        Spatie\Multitenancy\Tasks\PrefixCacheTask::class,           // optional
+    ],
+
 
 
 

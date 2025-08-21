@@ -2,17 +2,25 @@
 
 namespace App\Actions;
 
-use Spatie\Multitenancy\Contracts\Tenant;
-use Spatie\Multitenancy\Tasks\SwitchTenantTask;
 use Illuminate\Support\Facades\DB;
+use Spatie\Multitenancy\Contracts\IsTenant;
+use Spatie\Multitenancy\Tasks\SwitchTenantTask;
+
 
 class CreateTenantDatabase implements SwitchTenantTask
 {
-    public function makeCurrent(Tenant $tenant): void
+    public function makeCurrent(IsTenant $tenant): void
     {
-        // Here $tenant is an instance of your App\Models\Tenant,
-        // but it's type-hinted against the interface
-        DB::statement("CREATE DATABASE IF NOT EXISTS `{$tenant->database}`");
+//        dd([
+//            'default_connection' => DB::getDefaultConnection(),
+//            'current_database' => DB::connection()->getDatabaseName(),
+//        ]);
+        // Use landlord DB connection to create the tenant database
+        $dbName = $tenant->database;
+        DB::connection(config('multitenancy.tenant_database_connection_name'))
+        ->statement("CREATE DATABASE IF NOT EXISTS `$dbName`");
+//        DB::statement("CREATE DATABASE IF NOT EXISTS `$dbName`");
+
     }
 
     public function forgetCurrent(): void
@@ -20,4 +28,3 @@ class CreateTenantDatabase implements SwitchTenantTask
         // Nothing needed here
     }
 }
-
