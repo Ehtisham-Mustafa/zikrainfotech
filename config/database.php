@@ -25,7 +25,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_LANDLORD_DATABASE', 'landlord'),
             'username' => env('DB_LANDLORD_USERNAME', 'root'),
-            'password' => env('DB_LANDLORD_PASSWORD', 'R@na6293'),
+            'password' => env('DB_LANDLORD_PASSWORD', 'Mysql@123'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
@@ -44,7 +44,7 @@ return [
             'port' => env('DB_TENANT_PORT', '3306'),
             'database' => null,     // will be set at runtime
             'username' => env('DB_TENANT_USERNAME','root'),  
-            'password' => env('DB_TENANT_PASSWORD','R@na6293'),     
+            'password' => env('DB_TENANT_PASSWORD','Mysql@123'),     
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
